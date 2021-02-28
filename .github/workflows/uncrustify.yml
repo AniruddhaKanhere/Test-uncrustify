@@ -12,7 +12,13 @@ jobs:
     steps:
       - name: Test
         run: |
-          echo: ${{github.event.comment.body}}
+          if[ ${{github.event.comment.body}} == "/bot run uncrustify"]
+          then
+            echo "Found proper comment"
+          else
+            echo "Not triggering the workflow"
+          fi
+          echo ${{github.event.comment.body}}
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
