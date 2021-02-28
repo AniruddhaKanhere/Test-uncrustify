@@ -31,10 +31,10 @@ jobs:
       - name: Checkout upstream repo
         uses: actions/checkout@v2
         with:
-           persist-credentials: false
+           #persist-credentials: false
            repository: ${{ steps.upstreamrepo.outputs.RemoteRepo }}
            ref: ${{ steps.upstreambranch.outputs.branchname }}
-           token: ${{ secrets.PAT }}
+           #token: ${{ secrets.PAT }}
       - name: Install Uncrustify
         run: sudo apt-get install uncrustify
       - name: Run Uncrustify
