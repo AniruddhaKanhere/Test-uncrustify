@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Test
         run: |
-          if[ ${{github.event.comment.body}} == "/bot run uncrustify"]
+          if[ '${{github.event.comment.body}}' == '/bot run uncrustify']
           then
             echo "Found proper comment"
           else
