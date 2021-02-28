@@ -21,12 +21,14 @@ jobs:
         id: upstreambranch
         run: |
           echo "::set-output name=branchname::$(curl -v -H "Accept: application/vnd.github.sailor-v-preview+json" --url ${{ secrets.PAT }} ${{ github.event.issue.pull_request.url }} | jq '.head.ref' | sed 's/\"//g')"
-      - name: echo upstream branch
+          echo "::set-output name=RemoteRepo::$(curl -v -H "Accept: application/vnd.github.sailor-v-preview+json" --url ${{ secrets.PAT }} ${{ github.event.issue.pull_request.url }} | jq '.repo.full_name' | sed 's/\"//g')"
+      - name: echo upstream repo:branch
         run: |
-          echo ${{ steps.upstreambranch.outputs }}
+          echo ${{ steps.upstreambranch.outputs.RemoteRepo }}:${{ steps.upstreambranch.outputs.branchname }}
       - name: Checkout upstream repo
         uses: actions/checkout@v2
         with:
+           repository: ${{ steps.upstreambranch.outputs.RemoteRepo }}
            ref: ${{ steps.upstreambranch.outputs.branchname }}
       - name: Install Uncrustify
         run: sudo apt-get install uncrustify
