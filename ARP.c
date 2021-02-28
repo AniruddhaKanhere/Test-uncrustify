@@ -28,7 +28,7 @@
  * @brief Implements the Address Resolution Protocol for the FreeRTOS+TCP network stack.
  */
 
-/* This is a C++ style comment */
+// This is a C++ style comment
 /* Standard includes. */
 #include <stdint.h>
 #include <stdio.h>
