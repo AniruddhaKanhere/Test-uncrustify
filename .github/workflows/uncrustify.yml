@@ -7,18 +7,9 @@ on:
 jobs:
   Uncrustify:
     name: Run_Uncrustify
-    if: ${{ github.event.issue.pull_request }} # && contains(github.event.comment.body, '/bot run uncrustify')
+    if: ${{ github.event.issue.pull_request }} && github.event.comment.body == '/bot run uncrustify'
     runs-on: ubuntu-18.04
     steps:
-      - name: Test
-        run: |
-          if[ '${{github.event.comment.body}}' == '/bot run uncrustify']
-          then
-            echo "Found proper comment"
-          else
-            echo "Not triggering the workflow"
-          fi
-          echo ${{github.event.comment.body}}
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
