@@ -63,7 +63,7 @@
 
 /** @brief The time between gratuitous ARPs. */
 #ifndef arpGRATUITOUS_ARP_PERIOD
-    #define arpGRATUITOUS_ARP_PERIOD    ( pdMS_TO_TICKS(20000U) )
+    #define arpGRATUITOUS_ARP_PERIOD    ( pdMS_TO_TICKS( 20000U ) )
 #endif
 
 /*-----------------------------------------------------------*/
