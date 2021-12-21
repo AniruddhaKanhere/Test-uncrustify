@@ -32,8 +32,6 @@ jobs:
         uses: actions/checkout@v2
         with:
            #persist-credentials: false
-           #git config --global user.name 'Aniruddha Kanhere'
-           #git config --global user.email '60444055+AniruddhaKanhere@users.noreply.github.com'
            token: ${{ secrets.PAT }}
            repository: ${{ steps.upstreamrepo.outputs.RemoteRepo }}
            ref: ${{ steps.upstreambranch.outputs.branchname }}
@@ -45,6 +43,8 @@ jobs:
           find . -iname "*.[hc]" -exec uncrustify -c tools/uncrustify.cfg --no-backup --replace {} +
       - name: GitHub Action for committing changes to a repository
         run: |
+          git config --global user.name ${{ secrets.USERNAME }}
+          git config --global user.email ${{ secrets.USEREMAIL }}
           git add -A
           git commit -m "Uncrustify: triggered by comment."
           git push
