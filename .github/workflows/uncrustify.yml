@@ -16,6 +16,7 @@ jobs:
         run: echo "$GITHUB_CONTEXT"
       - name: get pullrequest url
         run: |
+          echo ${{ github.event.issue.pull_request }}
           echo ${{ github.event.issue.pull_request.url }}
       - name: get upstream repo
         id: upstreamrepo
