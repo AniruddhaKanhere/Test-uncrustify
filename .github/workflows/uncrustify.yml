@@ -15,9 +15,12 @@ jobs:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
       - name: get pullrequest url
+        id: url
         run: |
            echo "::set-output name=ListOfFiles::$(curl -H "Accept: application/vnd.github.sailor-v-preview+json" --url ${{github.event.issue.pull_request.url}}/files | jq '.[].filename' | sed 's/\"//g' | grep ".[ch]$" | grep -v "@")"
            echo ${{ github.event.issue.pull_request.url }}
+      - name: Print changed files
+        run: |
            echo ${{ steps.url.outputs.ListOfFiles }}
       - name: get upstream repo
         id: upstreamrepo
